@@ -45,8 +45,10 @@
             var comp = document.getElementById("comp");
             
             var update = function() {
-                out.innerHTML = comp.value;
-                var links = out.getElementsByTagName("a");
+                out.contentWindow.document.open();
+                out.contentWindow.document.write(comp.value);
+                out.contentWindow.document.close();
+                var links = out.contentWindow.document.getElementsByTagName("a");
                 for (var i = 0; i < links.length; i++) {
                     links[i].setAttribute("target", "_blank");
                 }
